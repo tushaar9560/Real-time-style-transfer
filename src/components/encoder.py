@@ -106,7 +106,7 @@ class Encoder(nn.Module):
         out = self.relu_3_1(out)
         
         output['r31'] = out
-        
+
         if(matrix31 is not None):
             feature3, transmatrix3 = matrix31(output['r31'], sF['r31'])
             out = self.reflecPad_3_2(feature3)
@@ -115,6 +115,22 @@ class Encoder(nn.Module):
         out = self.conv_3_2(out)
         out = self.relu_3_2(out)
 
+        output['r32'] = out
+
+        out = self.reflecPad_3_3(out)
+        out = self.conv_3_3(out)
+        out = self.relu_3_3(out)
+
+        output['r33'] = out
+
+        out = self.reflecPad_3_4(out)
+        out = self.conv_3_4(out)
+        out = self.relu_3_4(out)
+
+        output['r34'] = out
+
+        out = self.maxPool_3(out)
+        
         output['p3'] = out
 
         # fourth block
