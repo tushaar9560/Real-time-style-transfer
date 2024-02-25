@@ -1,0 +1,30 @@
+import argparse
+
+def arg_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--vgg_dir", default='models/vgg_r41.pth', help='pre-trained encoder path')
+    parser.add_argument("--loss_network_dir", default='models/vgg_r51.pth', help='used for loss network')
+    parser.add_argument("--decoder_dir", default='models/dec_r41.pth', help='pre-trained decoder path')
+    parser.add_argument('--pretrained', type=bool, default=True)
+    parser.add_argument("--matrix_dir", default='model/matrix_r41_new.pth', help='pre-trained matrix path')
+    parser.add_argument("--data_dir", default="train_data", help='path to training dataset')
+    parser.add_argument('--data_augmentation', type=bool, default=True)
+    parser.add_argument('--threads', type=int, default=6, help='number of threads for data loader to use')
+    parser.add_argument("--outf", default="output/", help='folder to output images and model checkpoints')
+    parser.add_argument("--content_layers", default="r41", help='layers for content')
+    parser.add_argument("--style_layers", default="r11,r21,r31,r41", help='layers for style')
+    parser.add_argument("--batchSize", type=int,default=8, help='batch size')
+    parser.add_argument("--lr", type=float, default=1e-4, help='learning rate')
+    parser.add_argument("--content_weight", type=float, default=1.0, help='content loss weight')
+    parser.add_argument("--style_weight", type=float, default=0.02, help='style loss weight, 0.02 for origin')
+    parser.add_argument("--log_interval", type=int, default=500, help='log interval')
+    parser.add_argument("--gpu_id", type=int, default=0, help='which gpu to use')
+    parser.add_argument("--save_interval", type=int, default=5000, help='checkpoint save interval')
+    parser.add_argument("--layer", default="r41", help='which features to transfer, either r31 or r41')
+    parser.add_argument("--latent", type=int, default=1024, help='length of latent vector')
+    parser.add_argument('--nEpochs', type=int, default=5000, help='number of epochs to train for')
+    parser.add_argument('--snapshots', type=int, default=5, help='Snapshots')
+    parser.add_argument('--start_iter', type=int, default=1, help='Starting Epoch')
+
+    args = parser.parse_args()
+    return args

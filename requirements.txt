@@ -1,5 +1,8 @@
 torch
-
-
+opencv-python
+numpy
+scipy
+pillow
+argparse
 
 -e .
