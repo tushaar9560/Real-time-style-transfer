@@ -41,6 +41,7 @@ def arg_parser():
     pred_parser.add_argument("--decoder_dir", type=str, default="artifacts/models/dec_r41.pth")
     pred_parser.add_argument("--matrix_dir", type=str, default='artifacts.models/matrix_r41_new.pth')
     pred_parser.add_argument("--latent", type=int, default=256, help="length of latent vectors")
+    pred_parser.add_argument("--multistyle", type=bool, default=0, help="1 for multi style transfer or 0 for single style transfer on the content image")
     # pred_parser.add_argument("--layer", type=str, default="r41", help="which features to transfer, either r31 or r41")
 
     args = parser.parse_args()
