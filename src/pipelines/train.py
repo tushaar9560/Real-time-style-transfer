@@ -23,9 +23,9 @@ class StyleTransferTrainer:
     def __init__(self, args):
         self.args = args
         self.device = torch.device("cuda" if args.cuda else "cpu")
-        self.encoder = image_encoder.Encoder()
-        self.decoder = decoder.Encoder()
-        self.loss_net = loss_network.LossNetwork()
+        self.encoder = image_encoder.Encoder().to(self.device)
+        self.decoder = decoder.Decoder().to(self.device)
+        self.loss_net = loss_network.LossNetwork().to(self.device)
         self.matrix = MulLayer(z_dim = args.latent)
         self.optimizer = Adam(self.matrix.parameters(), args.lr)
         self.criterion = LossCriterion(args.style_layers,

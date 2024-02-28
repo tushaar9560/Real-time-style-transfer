@@ -34,13 +34,13 @@ def arg_parser():
     pred_parser = subparsers.add_parser("predict", help="parser for prediction")
     
     pred_parser.add_argument("--cuda", type=int, required=True, help='set it to 1 for running on GPU, 0 for CPU')
-    pred_parser.add_argument("--content-image", type=str, default='artifacts/predict/input', help="Path to content image(s)")
-    pred_parser.add_argument("--style-image", type=str, default="artifacts/predict/style", help="Path to style image(s)")
+    pred_parser.add_argument("--test_dataset", type=str, default="artifacts/predict")
     pred_parser.add_argument("--output_image", type=str, default="artifacts/output")
     pred_parser.add_argument("--encoder_dir", type=str, default="artifacts/models/vgg_r41.pth")
     pred_parser.add_argument("--decoder_dir", type=str, default="artifacts/models/dec_r41.pth")
     pred_parser.add_argument("--matrix_dir", type=str, default='artifacts.models/matrix_r41_new.pth')
     pred_parser.add_argument("--latent", type=int, default=256, help="length of latent vectors")
+    pred_parser.add_argument("--layer",type=str, default='r41')
     pred_parser.add_argument("--multistyle", type=bool, default=0, help="1 for multi style transfer or 0 for single style transfer on the content image")
     # pred_parser.add_argument("--layer", type=str, default="r41", help="which features to transfer, either r31 or r41")
 
