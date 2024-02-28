@@ -2,10 +2,10 @@ import torch
 import torch.nn as nn
 
 
-class Encoder(nn.Module):
+class LossNetwork(nn.Module):
     #vgg
     def __init__(self):
-        super(Encoder, self).__init__()
+        super(LossNetwork, self).__init__()
         # first block
         # 224 x 224
         self.conv_1_1 = nn.Conv2d(3,3,1,1,0)

@@ -9,9 +9,9 @@ from torch.utils.data import DataLoader
 from torch.autograd import Variable
 from src.components.stylized.single import MulLayer
 from src.components.criterion import LossCriterion
-from src.components.network import image_encoder
-from src.components.network import decoder
-from src.components.network import loss_network
+from src.components.network.image_encoder import Encoder
+from src.components.network.decoder import Decoder
+from src.components.network.loss_network import LossNetwork
 from src.utils import print_options
 from src.pipelines.data_ingestion import Getdata
 cudnn.benchmark = True
@@ -25,9 +25,9 @@ class StyleTransferTrainer:
     def __init__(self, args):
         self.args = args
         self.device = torch.device("cuda" if args.cuda else "cpu")
-        self.encoder = image_encoder()
-        self.decoder = decoder()
-        self.loss_net = loss_network()
+        self.encoder = Encoder()
+        self.decoder = Decoder()
+        self.loss_net = LossNetwork()
         self.matrix = MulLayer(z_dim = args.latent)
         self.optimizer = Adam(self.matrix.parameters(), args.lr)
         self.criterion = LossCriterion(args.style_layers,
